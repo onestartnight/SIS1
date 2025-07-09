@@ -11,9 +11,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/api/**").permitAll() // 允许所有/api/路径的接口匿名访问
-                        .anyRequest().permitAll() // 其它请求也放行（如需要可改为authenticated）
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/**").permitAll()  // 放行所有API
+                        .anyRequest().permitAll()
                 );
         return http.build();
     }
