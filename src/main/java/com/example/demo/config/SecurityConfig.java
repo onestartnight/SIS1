@@ -10,12 +10,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers("/api/students/**").permitAll() // 实际项目应细分权限
-                .anyRequest().authenticated()
-            );
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authz -> authz
+                        .requestMatchers("/api/**").permitAll() // 允许所有/api/路径的接口匿名访问
+                        .anyRequest().permitAll() // 其它请求也放行（如需要可改为authenticated）
+                );
         return http.build();
     }
 }

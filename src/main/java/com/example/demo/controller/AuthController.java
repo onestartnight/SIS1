@@ -22,9 +22,9 @@ public class AuthController {
         if (userOpt.isPresent() && userOpt.get().getPassword().equals(password)) {
             User user = userOpt.get();
             return Map.of(
-                "success", true,
-                "role", user.getRole(),
-                "username", user.getUsername()
+                    "success", true,
+                    "role", user.getRole(),
+                    "username", user.getUsername()
             );
         }
         return Map.of("success", false, "message", "用户名或密码错误");
